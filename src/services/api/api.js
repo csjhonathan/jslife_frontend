@@ -11,7 +11,9 @@ const methods = [
 
 const axiosWrapper = {};
 
-const queryStringBuilder = query => Object.keys(query).length ? '?' + Object.keys(query).map(k => `${k}=${query[k]}`).join('&') : '';
+const queryStringBuilder = query => {
+	return Object.keys(query).length ? '?' + Object.keys(query).map(k => `${k}=${query[k]}`).join('&') : '';
+};
 
 const instance = axios.create({
 	baseURL: process.env.REACT_APP_API_URL
