@@ -6,7 +6,8 @@ const methods = [
 	'get',
 	'post',
 	'put',
-	'delete'
+	'delete',
+	'patch'
 ];
 
 const axiosWrapper = {};

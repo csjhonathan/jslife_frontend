@@ -1,24 +1,31 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import * as studentsApi from '../services/api/students.js';
 import * as classesApi from '../services/api/classes.js';
 import StudentsList from '../components/StudentsList.jsx';
+import {useNavigate} from 'react-router-dom';
+import HeaderContext from '../context/headerContext.js';
 export default function StudentsClassPage (){
+
+	const{setHeader} = useContext(HeaderContext);
 
 	const [students, setStudents] = useState();
 	const [classes, setClasses] = useState();
+	const navigate = useNavigate();
 
 	useEffect(()=>{
 		getStudents();
 		getClasses();
+		setHeader(
+			<button>voltar</button>
+		);
 	},[]);
 
 	async function getStudents (classId){
 		try {
 			const response = await studentsApi.list(classId);
-			console.log(response);
-			setStudents(response);
+			return setStudents(response);
 		} catch (error) {
-			console.log(error);
+			return alert(error.data.message);
 		}
 	}
 
@@ -42,7 +49,7 @@ export default function StudentsClassPage (){
 
 			<StudentsList>
 				<ul>
-					{students.map(({id, name, class: classname}) => <li key={id}>{`${name} - ${classname}`}</li>)}
+					{students.map(({id, name, class: classname}) => <li key={id} onClick={()=>navigate(`/students/list/${id}`)}>{`${name} - ${classname}`}</li>)}
 				</ul>
 			</StudentsList>
 		</div>

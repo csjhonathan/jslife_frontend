@@ -1,3 +1,5 @@
-export default function Header (){
-	return <div>JS_Life</div>;
+/*eslint-disable react/prop-types*/
+
+export default function Header ({children}){
+	return <div>{children}</div>;
 }
