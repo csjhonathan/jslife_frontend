@@ -19,6 +19,7 @@ export const StyledHeader = styled.div`
     align-items: center;
     @media(max-width: 768px){
       width: 100%;
+      justify-content: flex-end;
     }
     button{
     margin-left: 15px;
