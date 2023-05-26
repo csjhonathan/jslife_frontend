@@ -3,6 +3,9 @@ import * as api from '../services/api/students.js';
 import {useContext, useEffect, useState} from 'react';
 import HeaderContext from '../context/headerContext.js';
 import dayjs from 'dayjs';
+import {ClassItem, ClassLabel, ClassesList, PageTitle, StudentContainer, StudentData, StudentDataContainer, StudentLogo} from '../styles/studentPage/styles.js';
+import nameFormater from '../helpers/nameFormater.js';
+
 export default function StudentPage (){
 
 	const {studentId} = useParams();
@@ -31,29 +34,40 @@ export default function StudentPage (){
 	}
 
 	return(
-		<div>
-			<h1>Dados de Estudante</h1>
+		<StudentContainer>
+			<PageTitle>Dados de Estudante</PageTitle>
 
-			{student.photo ?? <img src="qqcoisa"/>}
+			<StudentDataContainer>
 
-			<p>Nome Completo: {student.name}</p>
-			<p>CPF: {student.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4')}</p>
-			<p>E-mail: {student.email}</p>
+				{student.photo ? <img src={student.photo}/> : <StudentLogo>{nameFormater(student.name)}</StudentLogo>}
 
-			<p>Turmas: </p>
-			{student.registrations?.length ?
-				student.registrations.map(({id, class: class_name, entry_date, egress_date})=>{
-					return (
-						<div key={id}>
-							<p >Turma: {class_name}</p>
-							<p>Data de ingresso: {dayjs(entry_date).format('DD/MM/YYYY')}</p>
-							<p>Data de saída: {egress_date ? dayjs(egress_date).format('DD/MM/YYYY') : '-'}</p>
-						</div>
-					);
-				})
-				:
-				<p>Este aluno ainda não foi matriculado!</p>
-			}
-		</div>
+				<StudentData>
+					<p>Nome Completo: {student.name}</p>
+					<p>CPF: {student.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4')}</p>
+					<p>E-mail: {student.email}</p>
+				</StudentData>
+
+				{student.registrations?.length ?
+					<>
+						<ClassLabel>Turmas: </ClassLabel>
+						<ClassesList>
+							{
+								student.registrations.map(({id, class: class_name, entry_date, egress_date})=>{
+									return (
+										<ClassItem key={id}>
+											<p >Turma: {class_name}</p>
+											<p>Data de ingresso: {dayjs(entry_date).format('DD/MM/YYYY')}</p>
+											<p>Data de saída: {egress_date ? dayjs(egress_date).format('DD/MM/YYYY') : '-'}</p>
+										</ClassItem>
+									);
+								})
+							}
+						</ClassesList>
+					</>
+					:
+					<p>Este aluno ainda não foi matriculado!</p>
+				}
+			</StudentDataContainer>
+		</StudentContainer>
 	);
 }

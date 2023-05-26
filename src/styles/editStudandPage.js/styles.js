@@ -19,11 +19,12 @@ export const FormTitle = styled.h1`
   font-weight: 700;
   font-size: 30px;
   @media(max-width: 768px){ 
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 
-export const RegisterStudentForm = styled.form`
+export const EditStudentForm = styled.form`
   display: flex;
   flex-direction: column;
   height: 80%;
@@ -71,7 +72,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const RegisterButton = styled.button`
+export const EditButton = styled.button`
   height: 50px;
   width: 80%;
   cursor: pointer;

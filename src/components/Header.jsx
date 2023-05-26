@@ -1,5 +1,12 @@
 /*eslint-disable react/prop-types*/
-import StyledHeader from '../styles/header/styles.js';
+import {StyledHeader, LogoHeader} from '../styles/header/styles.js';
 export default function Header ({children}){
-	return <StyledHeader>{children}</StyledHeader>;
+	return (
+		<StyledHeader>
+			<LogoHeader>JS_LIFE</LogoHeader>
+			<div>
+				{children}
+			</div>
+		</StyledHeader>
+	);
 }

@@ -1,6 +1,7 @@
 /*eslint-disable react/prop-types, no-unused-vars*/
 import {useEffect, useState} from 'react';
 import * as api from '../services/api/projects_deliver.js';
+import {GradeButton,EditIcon,PageTilte,DeliveredListItem, DeliveredList, ListContainer} from '../styles/deliveredProjectsPage/styles.js';
 
 export default function DeliveredProjectsList ({classId, projectId, class_name, project_name}){
 	const [projects, setProjects] = useState();
@@ -44,20 +45,31 @@ export default function DeliveredProjectsList ({classId, projectId, class_name, 
 			return console.log(error);
 		}
 	}
+
+	function NotGrade (){
+		return(
+			<>
+				Sem Nota
+				<EditIcon/>
+			</>
+		);
+	}
+
 	if(!projects) return <div>Carregando projetos...</div>;
+
 	return(
-		<div>
-			<h1>{`Projetos(s) ${project_name ? project_name : '' } ${class_name? `da Turma: ${class_name}` : 'de todas as turmas'}`}</h1>
-			<ul>
+		<ListContainer>
+			<PageTilte>{`Projetos(s) ${project_name ? project_name : '' } ${class_name? `da Turma: ${class_name}` : 'de todas as turmas'}`}</PageTilte>
+			<DeliveredList>
 				{projects.map(({deliver_id, grade, student_name})=> {
 					return (
-						<li 
+						<DeliveredListItem 
 							key={deliver_id}>{student_name} -  
-							<button onClick={() => changeGrade(deliver_id)}>{grade ? grade : 'Sem Nota'}</button>
-						</li>
+							<GradeButton disabled={!!grade} grade ={grade} onClick={() => changeGrade(deliver_id)}>{grade ? grade : <NotGrade/>}</GradeButton>
+						</DeliveredListItem>
 					);
 				})}
-			</ul>
-		</div>
+			</DeliveredList>
+		</ListContainer>
 	);
 }

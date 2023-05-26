@@ -7,7 +7,7 @@ import HeaderContext from '../context/headerContext.js';
 import InputMask from 'react-input-mask';
 import {useForm} from 'react-hook-form';
 import * as classesApi from '../services/api/classes.js';
-import {FormTitle, RegisterStudentForm} from '../styles/registerStudentPage/styles.js';
+import {EditButton,FormTitle, EditStudentForm, FormContainer, InputContainer} from '../styles/editStudandPage.js/styles.js';
 import * as registrationApi from '../services/api/registrations.js';
 import dayjs from 'dayjs';
 
@@ -99,10 +99,10 @@ export default function EditStudentPage (){
 	if(!student || !classes) return <div>carregando dados...</div>;
 	
 	return(
-		<>
+		<FormContainer>
 			<FormTitle>Edição de Aluno</FormTitle>
-			<RegisterStudentForm onSubmit={handleSubmit(editStudent)}>
-				<div>
+			<EditStudentForm onSubmit={handleSubmit(editStudent)}>
+				<InputContainer>
 					<label htmlFor="name">Nome*: </label>
 					<input
 						type='text'
@@ -110,8 +110,8 @@ export default function EditStudentPage (){
 						required
 						{...register('name')}
 					/>
-				</div>
-				<div>
+				</InputContainer>
+				<InputContainer>
 					<label htmlFor="cpf">CPF*: </label>
 					<InputMask
 						mask={'999.999.999-99'}
@@ -120,8 +120,8 @@ export default function EditStudentPage (){
 						required
 						{...register('cpf')}
 					/>
-				</div>
-				<div>
+				</InputContainer>
+				<InputContainer>
 					<label htmlFor="">E-mail*: </label>
 					<input
 						type='email'
@@ -129,16 +129,16 @@ export default function EditStudentPage (){
 						required
 						{...register('email')}
 					/>
-				</div>
-				<div>
+				</InputContainer>
+				<InputContainer>
 					<label htmlFor="">Foto: </label>
 					<input
 						type='text'
 						name='photo'
 						{...register('photo')}
 					/>
-				</div>
-				<div>
+				</InputContainer>
+				<InputContainer>
 					<label htmlFor="class">Turma*: </label>
 					<select 
 						name='class'
@@ -147,9 +147,9 @@ export default function EditStudentPage (){
 					>
 						{classes.map(({id, name}) => <option key={id} value={id}>{name}</option>)}
 					</select>
-				</div>
-				<button>Editar Aluno</button>
-			</RegisterStudentForm>
-		</>
+				</InputContainer>
+				<EditButton>Editar Aluno</EditButton>
+			</EditStudentForm>
+		</FormContainer>
 	);
 }

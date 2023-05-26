@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const StudentsListContainer = styled.div`
-    width: 100%;
+    width: 100vw;
     height: 100%;
-    padding-left: 150px;
+    padding-right: 24vw;
+    padding-left: 36vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:center;
     font-family: 'Lexend Deca', sans-serif;
+    align-self: right;
 `;
+
 export const ClassTitle = styled.h1`
   font-family: 'Lexend Deca', sans-serif; 
   font-weight: 700;
@@ -17,12 +20,11 @@ export const ClassTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
-
 export const SelectClassesMenu = styled.ul`
   position: fixed;
   left: 0;
   top:60px;
-  width: 150px;
+  width: 12vw;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -45,7 +47,7 @@ export const SelectClassesMenu = styled.ul`
 
 export const StyledSudentsList = styled.ul`
   height: 100%;
-  width: 100%;
+  width: 88vw;
   padding: 20px;
   display: flex;
   justify-content: space-evenly;
@@ -65,7 +67,7 @@ export const StudentsListItem = styled.li`
 
 export const ListContainer = styled.div`
   height: 100%;
-  width: 100%;
+  width: 80vw;
   overflow: scroll;
   ::-webkit-scrollbar{
     display: none;

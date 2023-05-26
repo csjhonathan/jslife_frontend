@@ -18,10 +18,10 @@ export default function StudentsClassPage (){
 		getClasses();
 		setHeader(
 			<>
-				<button onClick={()=> navigate(-1)}>voltar</button>
 				<button onClick={()=> navigate('/students/register')}>Cadastrar Estudante</button>
 				<button onClick={()=> navigate('/projects/deliver')}>Entregar Projeto</button>
 				<button onClick={()=> navigate('/projects/delivered')}>Ver projetos Entregues</button>
+				<button onClick={()=> navigate(-1)}>voltar</button>
 			</>
 		);
 	},[]);

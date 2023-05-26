@@ -8,6 +8,7 @@ import * as projectsApi from '../services/api/projects.js';
 import * as api from '../services/api/projects_deliver.js';
 import HeaderContext from '../context/headerContext.js';
 import {useNavigate} from 'react-router-dom';
+import {DeliverLabel,DeliverButton, DeliverForm, DeliverPojectPageTilte, DeliverProjectContainer, DeliverSelect, InputContainer, RepositoryInput} from '../styles/projectDeliveryPage/styles.js';
 
 export default function ProjectDeliveryPage (){
 
@@ -74,52 +75,59 @@ export default function ProjectDeliveryPage (){
 	}
 
 	return(
-		<>
-			<h1>Entrega de Projeto</h1>
-			<form onSubmit={handleSubmit(sendProject)}>
-				<label htmlFor="class">Selecione sua turma: </label>
-				<select 
-					name="class"
-					{...register('class_id')}
-					onChange={handleChange}
-					required
-				>
-					<option value={'Turmas'}>Selecione a turma: </option>	
-					{classes?.length && classes.map(({id, name})=>{
-						return <option key={id} value={id}>{name}</option>;
-					})}</select>
+		<DeliverProjectContainer>
+			<DeliverPojectPageTilte>Entrega de Projeto</DeliverPojectPageTilte>
+			<DeliverForm onSubmit={handleSubmit(sendProject)}>
+				<InputContainer>
+					<DeliverLabel htmlFor="class">Selecione sua turma: </DeliverLabel>
+					<DeliverSelect 
+						name="class"
+						{...register('class_id')}
+						onChange={handleChange}
+						required
+					><option value={'Turmas'}>Selecione a turma: </option>	
+						{classes?.length && classes.map(({id, name})=>{
+							return <option key={id} value={id}>{name}</option>;
+						})}</DeliverSelect>
 
-				<label htmlFor="name">Selecione seu nome: </label>
-				<select 
-					name="name" 
-					{...register('student_id')}
-					required
-				>
-					<option value={'alunos'}>Selecione o seu nome: </option>
-					{students?.length && students.map(({id, name})=>{
-						return <option key={id} value={id}>{name}</option>;
-					})}</select>
-
-				<label htmlFor="project">Selecione o projeto: </label>
-				<select 
-					name="project"
-					{...register('project_id')}
-					required
-				>
-					<option value={'Projetos'}>Selecione o projeto: </option>
-					{projects?.length && projects.map(({id, name})=>{
-						return <option key={id} value={id}>{name}</option>;
-					})}</select>
-
-				<label htmlFor="repository">Link do repositório: </label>
-				<input 
-					type="text" 
-					name="repository"
-					required
-					{...register('repository')}
-				/>
-				<button>Entregar</button>
-			</form>
-		</>
+				</InputContainer>
+				<InputContainer>
+					<DeliverLabel htmlFor="name">Selecione seu nome: </DeliverLabel>
+					<DeliverSelect 
+						name="name" 
+						{...register('student_id')}
+						required
+					>
+						<option value={'alunos'}>Selecione o seu nome: </option>
+						{students?.length && students.map(({id, name})=>{
+							return <option key={id} value={id}>{name}</option>;
+						})}</DeliverSelect>
+				</InputContainer>
+				<InputContainer>
+					<DeliverLabel htmlFor="project">Selecione o projeto: </DeliverLabel>
+					<DeliverSelect 
+						name="project"
+						{...register('project_id')}
+						required
+					>
+						<option value={'Projetos'}>Selecione o projeto: </option>
+						{projects?.length && projects.map(({id, name})=>{
+							return <option key={id} value={id}>{name}</option>;
+						})}</DeliverSelect>
+				</InputContainer>
+				<InputContainer>
+					<DeliverLabel htmlFor="repository">Link do repositório: </DeliverLabel>
+					<RepositoryInput 
+						type="text" 
+						name="repository"
+						required
+						placeholder='Link do repositório...'
+						{...register('repository')}
+					/>
+				</InputContainer>
+	
+				<DeliverButton>Entregar</DeliverButton>
+			</DeliverForm>
+		</DeliverProjectContainer>
 	);
 }

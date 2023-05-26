@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import * as classesApi from '../services/api/classes.js';
 import * as projectsApi from '../services/api/projects.js';
 import DeliveredProjectsList from '../components/DeliveredProjectsList.jsx';
+import {ProjectsList,ClassesList,SeeAllButton,DeliveredPageContainer, FilterMenu, DeliveredListContainer, ClassesOptionsContainer, ProjectsOptionsContainer} from '../styles/deliveredProjectsPage/styles.js';
 
 export default function DeliveredProjectsPage (){
 	const navigate = useNavigate();
@@ -67,29 +68,33 @@ export default function DeliveredProjectsPage (){
 	if(!projects || !classes) return <div>carregando dados...</div>;
 
 	return (
-		<>
-			<button onClick={handleView}>Ver todos</button>
-			<div>
-				<ul>
-					{classes.map(({id, name})=>{
-						return <li key={id}> <button onClick={()=>handleClassParams({classId: id, class_name: name})}>Turma: {name}</button></li>;
-					})}
-				</ul>
-			</div>
-			<div>
-				<ul>
-					{projects.map(({id, name})=>{
-						return <li key={id}><button onClick={()=>handleProjectsParams({projectId: id, project_name: name})}> Projeto: {name}</button></li>;
-					})}
-				</ul>
-			</div>
-			<DeliveredProjectsList 
-				classId ={classParams.classId} 
-				class_name={classParams.class_name}
+		<DeliveredPageContainer>
+			<FilterMenu>
+				<SeeAllButton onClick={handleView}>Ver todos</SeeAllButton>
+				<ClassesOptionsContainer>
+					<ClassesList>
+						{classes.map(({id, name})=>{
+							return <li key={id}> <button onClick={()=>handleClassParams({classId: id, class_name: name})}>{name}</button></li>;
+						})}
+					</ClassesList>
+				</ClassesOptionsContainer>
+				<ProjectsOptionsContainer>
+					<ProjectsList>
+						{projects.map(({id, name})=>{
+							return <li key={id}><button onClick={()=>handleProjectsParams({projectId: id, project_name: name})}>{name}</button></li>;
+						})}
+					</ProjectsList>
+				</ProjectsOptionsContainer>
+			</FilterMenu>
+			<DeliveredListContainer>
+				<DeliveredProjectsList 
+					classId ={classParams.classId} 
+					class_name={classParams.class_name}
 
-				projectId = {projectsParams.projectId}
-				project_name={projectsParams.project_name}
-			/>
-		</>
+					projectId = {projectsParams.projectId}
+					project_name={projectsParams.project_name}
+				/>
+			</DeliveredListContainer>
+		</DeliveredPageContainer>
 	);
 }
