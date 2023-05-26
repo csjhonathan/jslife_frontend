@@ -32,7 +32,7 @@ export default function ProjectDeliveryPage (){
 			const response = await classesApi.getClasses();
 			return setClasses(response);
 		} catch (error) {
-			return console.log(error);
+			return alert(error.data.message);
 		}
 	}
 
@@ -41,7 +41,7 @@ export default function ProjectDeliveryPage (){
 			const response = await studentsApi.list(classId);
 			return setStudents(response);
 		} catch (error) {
-			return console.log(error);
+			return alert(error.data.message);
 		}
 	}
 
@@ -50,7 +50,7 @@ export default function ProjectDeliveryPage (){
 			const response = await projectsApi.list();
 			return setProjects(response);
 		} catch (error) {
-			return console.log(error);
+			return alert(error.data.message);
 		}
 	}
 
@@ -64,7 +64,7 @@ export default function ProjectDeliveryPage (){
 			await api.deliver(data);
 			return alert('Seu projeto foi enviado!');
 		} catch (error) {
-			return console.log(error);
+			return alert(error.data.message);
 		}
 	}
 

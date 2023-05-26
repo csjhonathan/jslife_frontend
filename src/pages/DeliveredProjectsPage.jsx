@@ -29,20 +29,18 @@ export default function DeliveredProjectsPage (){
 	async function getProjects (){
 		try {
 			const response = await projectsApi.list();
-			setProjects(response);
-			console.log(response);
+			return setProjects(response);
 		} catch (error) {
-			console.log(error);
+			return alert(error.data.message);
 		}
 	}
 
 	async function getClasses (){
 		try {
 			const response = await classesApi.getClasses();
-			console.log(response);
-			setClasses(response);
+			return setClasses(response);
 		} catch (error) {
-			console.log(error);
+			return alert(error.data.message);
 		}
 	}
 

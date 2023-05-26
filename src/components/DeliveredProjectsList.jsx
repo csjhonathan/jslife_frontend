@@ -13,10 +13,9 @@ export default function DeliveredProjectsList ({classId, projectId, class_name, 
 	async function getDeliveredProjects ({classId, projectId}){
 		try {
 			const response = await api.listDeliveredProjects({classId, projectId});
-			setProjects(response);
+			return setProjects(response);
 		} catch (error) {
-			console.log(error);
-		}
+			return alert(error.data.message);		}
 	}
 
 	function changeGrade (deliver_id){
@@ -42,7 +41,7 @@ export default function DeliveredProjectsList ({classId, projectId, class_name, 
 			alert('Nota atualizada');
 			return getDeliveredProjects({classId, projectId});
 		} catch (error) {
-			return console.log(error);
+			return alert(error.data.message);
 		}
 	}
 

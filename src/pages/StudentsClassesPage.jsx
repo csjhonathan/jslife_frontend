@@ -32,7 +32,6 @@ export default function StudentsClassPage (){
 			if(class_name){
 				setClassName(class_name);
 			}
-			console.log(response);
 			return setStudents(response);
 		} catch (error) {
 			return alert(error.data.message);
