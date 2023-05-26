@@ -16,7 +16,11 @@ export default function StudentsClassPage (){
 		getStudents();
 		getClasses();
 		setHeader(
-			<button>voltar</button>
+			<>
+				<button onClick={()=> navigate(-1)}>voltar</button>
+				<button onClick={()=> navigate('/projects/deliver')}>Entregar Projeto</button>
+				<button onClick={()=> navigate('/projects/delivered')}>Ver projetos Entregues</button>
+			</>
 		);
 	},[]);
 

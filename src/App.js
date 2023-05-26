@@ -8,7 +8,8 @@ import StudentPage from './pages/StudentPage.jsx';
 import HeaderContext from './context/headerContext.js';
 import {useState} from 'react';
 import EditStudentPage from './pages/EditStudentPage.jsx';
-
+import ProjectDeliveryPage from './pages/ProjectDeliveryPage.jsx';
+import DeliveredProjectsPage from './pages/DeliveredProjectsPage.jsx';
 function App () {
 	const [header, setHeader] = useState();
 	return (
@@ -26,6 +27,8 @@ function App () {
 					<Route path="/students/list" element={<StudentsClassPage />}/>
 					<Route path="/students/list/:studentId" element={<StudentPage />}/>
 					<Route path="/students/edit/:studentId" element={<EditStudentPage />}/>
+					<Route path="/projects/deliver" element={<ProjectDeliveryPage />}/>
+					<Route path="/projects/delivered" element={<DeliveredProjectsPage />}/>
 				</Routes>
 			</BrowserRouter>
 		</HeaderContext.Provider>		

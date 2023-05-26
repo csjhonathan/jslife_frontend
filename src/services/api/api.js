@@ -30,7 +30,6 @@ for (const method of methods) {
 				url,
 				data: body
 			});
-
 			return complete ? request : request.data;
 		} catch (err) {
 			console.error(err);
