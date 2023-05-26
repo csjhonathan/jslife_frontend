@@ -7,7 +7,7 @@ import HeaderContext from '../context/headerContext.js';
 import InputMask from 'react-input-mask';
 import {useForm} from 'react-hook-form';
 import * as classesApi from '../services/api/classes.js';
-import {FormTitle, RegisterStudentForm} from '../styles/registerStudentPage/registerStudentStyles.js';
+import {FormTitle, RegisterStudentForm} from '../styles/registerStudentPage/styles.js';
 import * as registrationApi from '../services/api/registrations.js';
 import dayjs from 'dayjs';
 

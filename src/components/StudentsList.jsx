@@ -1,7 +1,7 @@
 /*eslint-disable react/prop-types*/
-
+import {StyledSudentsList} from '../styles/studentsListPage/styles.js';
 export default function StudentsList ({children}){
 	return(
-		<div>{children}</div>
+		<StyledSudentsList>{children}</StyledSudentsList>
 	);
 }

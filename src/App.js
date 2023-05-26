@@ -10,6 +10,8 @@ import {useState} from 'react';
 import EditStudentPage from './pages/EditStudentPage.jsx';
 import ProjectDeliveryPage from './pages/ProjectDeliveryPage.jsx';
 import DeliveredProjectsPage from './pages/DeliveredProjectsPage.jsx';
+import Container from './styles/container.js';
+
 function App () {
 	const [header, setHeader] = useState();
 	return (
@@ -21,15 +23,17 @@ function App () {
 				<Header>
 					{header}
 				</Header>
-				<Routes>
-					<Route path="/" element={<Navigate to="/students/list" />} />
-					<Route path='/students/register' element={<RegisterStudentPage />} />
-					<Route path="/students/list" element={<StudentsClassPage />}/>
-					<Route path="/students/list/:studentId" element={<StudentPage />}/>
-					<Route path="/students/edit/:studentId" element={<EditStudentPage />}/>
-					<Route path="/projects/deliver" element={<ProjectDeliveryPage />}/>
-					<Route path="/projects/delivered" element={<DeliveredProjectsPage />}/>
-				</Routes>
+				<Container>
+					<Routes>
+						<Route path="/" element={<Navigate to="/students/list" />} />
+						<Route path='/students/register' element={<RegisterStudentPage />} />
+						<Route path="/students/list" element={<StudentsClassPage />}/>
+						<Route path="/students/list/:studentId" element={<StudentPage />}/>
+						<Route path="/students/edit/:studentId" element={<EditStudentPage />}/>
+						<Route path="/projects/deliver" element={<ProjectDeliveryPage />}/>
+						<Route path="/projects/delivered" element={<DeliveredProjectsPage />}/>
+					</Routes>
+				</Container>
 			</BrowserRouter>
 		</HeaderContext.Provider>		
 
