@@ -32,6 +32,7 @@ export default function StudentsClassPage (){
 			if(class_name){
 				setClassName(class_name);
 			}
+			console.log(response);
 			return setStudents(response);
 		} catch (error) {
 			return alert(error.data.message);
@@ -62,7 +63,11 @@ export default function StudentsClassPage (){
 			<StudentsList>
 				<ClassTitle>Estudantes {class_name ? `da ${class_name}` : 'de Todas as Turmas'}</ClassTitle>
 				<ListContainer>
-					{students.map(({id, name, class: classname}) => <StudentsListItem key={id} onClick={()=>navigate(`/students/list/${id}`)}>{`${name} - ${classname}`}</StudentsListItem>)}
+					{students.length ? 
+						students.map(({id, name, class: classname, registered}) => <StudentsListItem registered = {registered} key={id} onClick={()=>navigate(`/students/list/${id}`)}>{`${name} - ${classname} - ${registered ? 'Matriculado' : 'Não Matriculado'}`}</StudentsListItem>)	
+						:
+						'Não há alunos nesta turma...'
+					}
 				</ListContainer>
 			</StudentsList>
 		</StudentsListContainer>

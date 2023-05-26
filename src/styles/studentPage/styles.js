@@ -79,9 +79,10 @@ export const ClassesList = styled.ul`
 `;
 
 export const ClassItem = styled.li`
-  margin-top: 10px;
+  background-color: ${({isCurrent}) => isCurrent && 'lightgray'};
+  margin-bottom: 10px;
   border: solid 1px;
-  height: 80px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;

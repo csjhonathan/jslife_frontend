@@ -54,7 +54,7 @@ export default function StudentPage (){
 							{
 								student.registrations.map(({id, class: class_name, entry_date, egress_date})=>{
 									return (
-										<ClassItem key={id}>
+										<ClassItem key={id} isCurrent = {!egress_date}>
 											<p >Turma: {class_name}</p>
 											<p>Data de ingresso: {dayjs(entry_date).format('DD/MM/YYYY')}</p>
 											<p>Data de saída: {egress_date ? dayjs(egress_date).format('DD/MM/YYYY') : '-'}</p>

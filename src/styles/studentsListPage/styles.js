@@ -63,6 +63,7 @@ export const StudentsListItem = styled.li`
   align-items: center;
   border: solid 1px;
   margin-top: 18px;
+  background-color: ${({registered})=> !registered ? 'lightgray' : ''};
 `;
 
 export const ListContainer = styled.div`
