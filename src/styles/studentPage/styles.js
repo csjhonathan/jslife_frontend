@@ -65,6 +65,12 @@ export const StudentLogo = styled.div`
   background-color: black;
 `;
 
+export const StudentImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+`;
 export const ClassesList = styled.ul`
   height: 40%;
   width: 70%;

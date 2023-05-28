@@ -3,7 +3,7 @@ import * as api from '../services/api/students.js';
 import {useContext, useEffect, useState} from 'react';
 import HeaderContext from '../context/headerContext.js';
 import dayjs from 'dayjs';
-import {ClassItem, ClassLabel, ClassesList, PageTitle, StudentContainer, StudentData, StudentDataContainer, StudentLogo} from '../styles/studentPage/styles.js';
+import {StudentImg, ClassItem, ClassLabel, ClassesList, PageTitle, StudentContainer, StudentData, StudentDataContainer, StudentLogo} from '../styles/studentPage/styles.js';
 import nameFormater from '../helpers/nameFormater.js';
 
 export default function StudentPage (){
@@ -39,7 +39,7 @@ export default function StudentPage (){
 
 			<StudentDataContainer>
 
-				{student.photo ? <img src={student.photo}/> : <StudentLogo>{nameFormater(student.name)}</StudentLogo>}
+				{student.photo ? <StudentLogo><StudentImg src={student.photo}/></StudentLogo> : <StudentLogo>{nameFormater(student.name)}</StudentLogo>}
 
 				<StudentData>
 					<p>Nome Completo: {student.name}</p>
