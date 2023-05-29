@@ -40,8 +40,10 @@ export default function RegisterStudentPage (){
 				setValue(`...${props}`, '');
 			}
 
-			return alert(response.message);
+			alert(response.message);
+			return navigate('/students/list');
 		} catch (error) {
+			console.log(error);
 			if(error.status===409 || error.status===422){
 				return alert(error.data.message);
 			}

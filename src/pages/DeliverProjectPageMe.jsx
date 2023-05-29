@@ -7,23 +7,26 @@ import * as studentsApi from '../services/api/students.js';
 import * as projectsApi from '../services/api/projects.js';
 import * as api from '../services/api/projects_deliver.js';
 import HeaderContext from '../context/headerContext.js';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {DeliverLabel,DeliverButton, DeliverForm, DeliverPojectPageTilte, DeliverProjectContainer, DeliverSelect, InputContainer, RepositoryInput} from '../styles/projectDeliveryPage/styles.js';
 
-export default function ProjectDeliveryPage (){
 
+export default function DeliverProjectPageMe (){
 	const{setHeader} = useContext(HeaderContext);
 	const {register, handleSubmit} = useForm();
 	const [classes, setClasses] = useState();
 	const [students, setStudents] = useState();
 	const [projects, setProjects] = useState();
 	const navigate = useNavigate();
-
+	const {studentId} = useParams();
 	useEffect(()=>{
 		getClasses();
 		getProjects();
 		setHeader(
-			<button onClick={()=> navigate(-1)}>Voltar</button>
+			<>
+				<button onClick={()=> navigate(`/students/me/${studentId}`)}>Início</button>
+				<button onClick={()=> navigate(-1)}>Voltar</button>
+			</>
 		);
 	},[]);
 

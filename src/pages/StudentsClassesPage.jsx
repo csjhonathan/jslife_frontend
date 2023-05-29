@@ -22,7 +22,6 @@ export default function StudentsClassPage (){
 		setHeader(
 			<>
 				<button onClick={()=> navigate('/students/register')}>Cadastrar Estudante</button>
-				<button onClick={()=> navigate('/projects/deliver')}>Entregar Projeto</button>
 				<button onClick={()=> navigate('/projects/delivered')}>Ver projetos Entregues</button>
 				<button onClick={()=> navigate(-1)}>voltar</button>
 			</>
@@ -38,7 +37,6 @@ export default function StudentsClassPage (){
 			if(class_name){
 				setClassName(class_name);
 			}
-
 			return setStudents({registereds, notRegistereds});
 		} catch (error) {
 			return alert(error.data.message);

@@ -40,11 +40,10 @@ for (const method of methods) {
 
 instance.interceptors.request.use(async config => {
 	try {
-		const token = JSON.parse(localStorage.getItem('token')) || JSON.parse(sessionStorage.getItem('token'));
+		const token = JSON.parse(localStorage.getItem('js_life_token')) || JSON.parse(sessionStorage.getItem('js_life_token'));
 		if (token !== null) {
 			config.headers['Authorization'] = `Bearer ${token}`;
 		}
-
 		return config;
 	} catch (error) {
 		return Promise.reject(error);

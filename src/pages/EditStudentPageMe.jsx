@@ -6,34 +6,31 @@ import * as api from '../services/api/students.js';
 import HeaderContext from '../context/headerContext.js';
 import InputMask from 'react-input-mask';
 import {useForm} from 'react-hook-form';
-import {EditButton,FormTitle, EditStudentForm, FormContainer, InputContainer} from '../styles/editStudandPage.js/styles.js';
+import {EditButton,FormTitle, EditStudentForm, FormContainer, InputContainer} from '../styles/editStudentPageMe/styles.js';
 
-
-export default function EditStudentPage (){
+export default function EditStudentPageMe (){
 
 	const {register, setValue, handleSubmit} = useForm();
 	const {studentId} = useParams();
 	const[student, setStudent] = useState();
 	const{setHeader} = useContext(HeaderContext);
 	const navigate = useNavigate();
-	const[currentRegistration, setCurrentRegistration] = useState(); 
 
 	useEffect(()=>{
 		getStudent(studentId);
 		setHeader(
 			<>
-				<button onClick={()=> navigate(`/registration/update/${currentRegistration}/${studentId}`)}>Alterar Matrícula do Aluno</button>
+				<button onClick={()=> navigate(`/students/edit/password/${studentId}`)}>Editar Senha</button>
 				<button onClick={()=> navigate(-1)}>Voltar</button>
 			</>
 		);
-	}, [currentRegistration]);
+	}, []);
 
 	async function getStudent (studentId){
 		const hash = {
 			name: true,
 			cpf: true,
 			email: true,
-			classId: true,
 			photo: true
 		};
 		try {
@@ -44,8 +41,8 @@ export default function EditStudentPage (){
 					setValue(props, response[props]);
 				}				
 			}
-			setCurrentRegistration(response.currentRegistration?.id);
 			return setStudent(response);
+
 		} catch (error) {
 			return alert('Houve um erro inesperado!');
 		}
@@ -55,13 +52,14 @@ export default function EditStudentPage (){
 	async function editStudent (data){
 
 		if(!data.photo) delete data.photo;
+
 		const formatedCpf = data.cpf.replace(/[.-]/g, '');
 		data.cpf = formatedCpf;
 		
 		try {			
-			const response = await api.update(data, studentId);
+			const response = await api.updateMe(data, studentId);
 			alert(response.message);
-			return navigate(-1);
+			return navigate(`/students/me/${studentId}`);
 		} catch (error) {
 			if(error.status===409 || error.status===422){
 				return alert(error.data.message);
@@ -71,7 +69,7 @@ export default function EditStudentPage (){
 
 	}
 
-	if(!student ) return <div>carregando dados...</div>;
+	if(!student) return <div>carregando dados...</div>;
 	
 	return(
 		<FormContainer>
@@ -113,7 +111,7 @@ export default function EditStudentPage (){
 						{...register('photo')}
 					/>
 				</InputContainer>
-				<EditButton>Editar Aluno</EditButton>
+				<EditButton>Editar Dados</EditButton>
 			</EditStudentForm>
 		</FormContainer>
 	);

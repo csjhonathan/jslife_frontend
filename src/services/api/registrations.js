@@ -1,7 +1,10 @@
 import api from './api.js';
 
-export function update (registrationId, egress_date){
-	return api.patch(`/registrations/${registrationId}?egress_date=${egress_date}`);
+export function update (registrationId,body){
+	return api.patch(`/registrations/update/${registrationId}`, body);
+}
+export function close (registrationId, body){
+	return api.patch(`/registrations/close/${registrationId}`, body);
 }
 
 export function create ({studentId, class_id}){

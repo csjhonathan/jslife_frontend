@@ -7,6 +7,7 @@ import * as classesApi from '../services/api/classes.js';
 import * as projectsApi from '../services/api/projects.js';
 import DeliveredProjectsList from '../components/DeliveredProjectsList.jsx';
 import {ProjectsList,ClassesList,SeeAllButton,DeliveredPageContainer, FilterMenu, DeliveredListContainer, ClassesOptionsContainer, ProjectsOptionsContainer} from '../styles/deliveredProjectsPage/styles.js';
+import UseLogout from '../helpers/logout.js';
 
 export default function DeliveredProjectsPage (){
 	const navigate = useNavigate();
@@ -15,11 +16,13 @@ export default function DeliveredProjectsPage (){
 	const [projects, setProjects] = useState();
 	const [classParams, setClassParams] = useState({classId: '',  class_name: ''});
 	const [projectsParams, setProjectsParams] = useState({projectId: '', project_name: ''});
+	const [logout, setLogout] = UseLogout();
 
 	useEffect(()=>{
 		setHeader(
 			<>
 				<button onClick={()=> navigate(-1)}>Voltar</button>
+				<button onClick={()=> setLogout(!logout)}>Sair</button>
 			</>
 		);
 		getProjects();
