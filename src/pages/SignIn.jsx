@@ -46,6 +46,7 @@ export default function SignInPage (){
 					disabled={disabled}
 					{...register('password')}
 				/>
+				<p>LEMBRETE: Se você nunca alterou sua senha, ela será seu CPF por padrão!</p>
 
 				<LoginInButton>Acessar Conta</LoginInButton>
 			</FormArea>
